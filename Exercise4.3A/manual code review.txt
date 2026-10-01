@@ -1,0 +1,55 @@
+BASELINE OUTPUT – ORDER PROCESSING
+==================================
+
++----------+-------+----------+----------+----------+-----------------+-------------+----------------+
+| Customer | Price | Quantity | Subtotal | Discount | Member Discount | Final Total | Order Status   |
++----------+-------+----------+----------+----------+-----------------+-------------+----------------+
+| Aisha    | 30    | 2        | 60       | 0        | 0               | 60          | Small          |
+| Ben      | 60    | 2        | 120      | 12.0     | 6.0             | 102.0       | Standard       |
+| Chloe    | 50    | 3        | 150      | 15.0     | 0               | 135.0       | Standard       |
++----------+-------+----------+----------+----------+-----------------+-------------+----------------+
+
+Notes:
+- Aisha's final total is £60.
+- Ben's final total is £102 after the standard and member discounts.
+- Chloe's final total is £135 after the standard discount.
+- The original program also printed the Customer and Final Total a second time.
+
+=========================================================================================================
+
+
+CORRECTED OUTPUT – ORDER PROCESSING
+
++----------+-------+----------+--------+----------+-----------------+-------------+---------------+
+| Customer | Price | Quantity | Member | Subtotal | Discount        | Member Disc. | Final Total   |
++----------+-------+----------+--------+----------+-----------------+-------------+---------------+
+| Aisha    | 30    | 2        | False  | 60       | 0               | 0           | 60            |
+| Ben      | 60    | 2        | True   | 120      | 12.0            | 6.0         | 102.0         |
+| Chloe    | 50    | 3        | False  | 150      | 15.0            | 0           | 135.0         |
++----------+-------+----------+--------+----------+-----------------+-------------+---------------+
+
+ORDER STATUS
+============
+
++----------+---------------+
+| Customer | Order Status  |
++----------+---------------+
+| Aisha    | Small         |
+| Ben      | Standard      |
+| Chloe    | Standard      |
++----------+---------------+
+
+SUMMARY
+=======
+
+Aisha:
+  Final Total: £60
+  Status: Small
+
+Ben:
+  Final Total: £102
+  Status: Standard
+
+Chloe:
+  Final Total: £135
+  Status: Standard

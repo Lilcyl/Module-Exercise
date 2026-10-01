@@ -11,7 +11,23 @@ Learner instructions:
 - Run the same test cases again after refactoring.
 """
 
+
 def process_order(customer, price, quantity, member):
+    """Calculate a customer's order total and return a summary.
+
+    This function calculates the subtotal, applies any standard and member
+    discounts, and returns a formatted order summary.
+
+    Args:
+        customer: The customer's name to include in the order summary.
+        price: The unit price of each item in the order.
+        quantity: The number of items being purchased.
+        member: True if the customer is a loyalty member; otherwise False.
+
+    Returns:
+        A string containing the customer details, subtotal, discounts, and
+        final total for the order.
+    """
     subtotal = price * quantity
 
     if subtotal > 100:
@@ -19,33 +35,30 @@ def process_order(customer, price, quantity, member):
     else:
         discount = 0
 
-    if member == True:
+    if member is True:  # correction 2 Changed == to is using pylint
         member_discount = subtotal * 0.05
     else:
         member_discount = 0
 
     total = subtotal - discount - member_discount
-
-    print("Customer:", customer)
-    print("Price:", price)
-    print("Quantity:", quantity)
-    print("Subtotal:", subtotal)
-    print("Discount:", discount)
-    print("Member discount:", member_discount)
-    print("Final total:", total)
-
     if total >= 100:
         print("Order status: Standard")
     else:
         print("Order status: Small")
-
-    print("Customer:", customer)
-    print("Final total:", total)
-
+    return f"""
+    Customer: {customer}
+    Price: {price}
+    Quantity: {quantity}
+    Member: {member}
+    Subtotal: {subtotal}
+    Discount: {discount}
+    Member discount: {member_discount}
+    Final total: {total}
+    """
 
 # Test cases
-process_order("Aisha", 30, 2, False)
+print(process_order("Aisha", 30, 2, False))
 print()
-process_order("Ben", 60, 2, True)
+print(process_order("Ben", 60, 2, True))
 print()
-process_order("Chloe", 50, 3, False)
+print(process_order("Chloe", 50, 3, False))

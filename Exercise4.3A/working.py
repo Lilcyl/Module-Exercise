@@ -13,7 +13,21 @@ Learner instructions:
 
 
 def process_order(customer, price, quantity, member):
-    """Calculate the final price of a customer's order."""  # correction 1 added Docstring
+    """Calculate a customer's order total and return a summary.
+
+    This function calculates the subtotal, applies any standard and member
+    discounts, and returns a formatted order summary.
+
+    Args:
+        customer: The customer's name to include in the order summary.
+        price: The unit price of each item in the order.
+        quantity: The number of items being purchased.
+        member: True if the customer is a loyalty member; otherwise False.
+
+    Returns:
+        A string containing the customer details, subtotal, discounts, and
+        final total for the order.
+    """
     subtotal = price * quantity
 
     if subtotal > 100:
@@ -28,7 +42,7 @@ def process_order(customer, price, quantity, member):
 
     total = subtotal - discount - member_discount
     if total >= 100:
-        print("Order status: Standard")  
+        print("Order status: Standard")
     else:
         print("Order status: Small")
     return f"""
